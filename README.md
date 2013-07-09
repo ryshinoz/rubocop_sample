@@ -204,7 +204,7 @@
                ^^
     ```
 
-- `Blocks` - 複数行ブロックでは{...}を利用しない
+- `Blocks` - 複数行ブロックでは{...}を利用しない（避ける）
 
     ```ruby
     source_code_layout/bad/blocks.rb:5:12: C: Avoid using {...} for multi-line blocks.
@@ -212,7 +212,7 @@
                ^
     ```
 
-- `ParameterLists` - メソッドに6個以上引数を設定しない
+- `ParameterLists` - メソッドに6個以上引数を設定しない（避ける）
 
     - 最大数は設定可能
 
@@ -230,12 +230,80 @@
           ^^^^^
     ```
 
+- `MultilineTernaryOperator` - 三項演算子を複数行にしない（避ける）
+
+    ```ruby
+    source_code_layout/bad/ternary_operator.rb:3:1: C: Avoid multi-line ?: (the ternary operator); use if/unless instead.
+    aaa > 15 ?
+    ^^^^^^^^^^^
+    ```
+
+
 - `NestedTernaryOperator` - 三項演算子をネストしない
 
     ```ruby
     source_code_layout/bad/ternary_operator.rb:1:19: C: Ternary operators must not be nested. Prefer if/else constructs instead.
     some_condition ? (1 ?  'a' : 'b') : somthing_else
                       ^^^^^^^^^^^^^^
+    ```
+
+- `UnlessElse` - else付きのunlessは利用しない
+
+    ```ruby
+    source_code_layout/bad/unless_else.rb:1:1: C: Never use unless with else. Rewrite these with the positive case first.
+    unless success?
+    ^^^
+    ```
+
+- `AndOr` - andには&&、orには||を利用する
+
+    ``` ruby
+    source_code_layout/bad/and_or.rb:4:8: C: Use && instead of and.
+    if aaa and bbb
+               ^^^
+    source_code_layout/bad/and_or.rb:8:8: C: Use || instead of or.
+    if aaa or bbb
+               ^^
+    ```
+
+- `WhenThen` - when x;は利用しない、代わりにwhen x thenを利用する
+
+    ```ruby
+    source_code_layout/bad/when_then.rb:3:7: C: Never use "when x;". Use "when x then" instead.
+    when 1;
+          ^
+    ```
+
+- `IfUnlessModifier` - if/unlessのボディが1行の場合、かっこよくする
+
+    ```ruby
+    source_code_layout/bad/favor_modifer.rb:2:1: C: Favor modifier if/unless usage when you have a single-line body. Another good alternative is the usage of control flow &&/||.
+    if aaa == 1
+        ^^^
+    ```
+
+- `WhileUntilModifier` - while/untilのボディが1行の場合、かっこよくする
+
+    ```ruby
+    source_code_layout/bad/favor_modifer.rb:6:1: C: Favor modifier while/until usage when you have a single-line body.
+    while aaa > 1
+        ^^^
+    ```
+
+- `FavorUnlessOverNegatedIf` - ifで負の条件チェックする場合はunlessを利用する
+
+    ```ruby
+    source_code_layout/bad/favor_unless_over_negated_if.rb:3:1: C: Favor unless (or control flow or) over if for negative conditions.
+    puts 'message' if !bbb
+    ^^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `FavorUntilOverNeatedWhile` - whileを負の条件でチェックする場合はuntilを利用する
+
+    ```ruby
+    source_code_layout/bad/favor_unless_over_negated_if.rb:5:1: C: Favor until over while for negative conditions.
+    puts 'message' while !bbb
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
 - 式や文をわける時にセミコロン「;」を利用しない
@@ -245,6 +313,7 @@
     pust 'foo'; puts 'bar'
               ^
     ```
+
 
 - Prefer a single-line format for class difinitions with no body.
 
