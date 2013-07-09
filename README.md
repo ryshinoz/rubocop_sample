@@ -84,9 +84,9 @@
 - `SpaceAroundBraces` - 波括弧（brace）の前後には空白を入れる
 
     ```ruby
-    source_code_layout/bad/surrounding_space.rb:3:14: C: Space inside hash literal braces missing.
-    aaa = { aaa: 'bbb'}
-                 ^^^^^
+    source_code_layout/bad/surrounding_space.rb:3:16: C: Surrounding space missing for '{'.
+    [1, 2, 3].each {|e| puts e }
+                   ^
     ```
 
 - `SpaceInsideParens` - 丸括弧（paren）の後には空白を入れない
@@ -486,12 +486,79 @@
           ^^^^^^^^^^
     ```
 
-- Prefer a single-line format for class difinitions with no body.
+- `OpMethod` - `+/-/[]/[]=/<<`を再定義する場合、引数名は`other`にする
 
-- 1行関数は避ける
+    ```ruby
+    source_code_layout/bad/op_method.rb:1:7: C: When defining the + operator, name its argument *other*.
+    def +(other2)
+          ^^^^^^
+    ```
+
+- `ReduceArguments` - `reduce`メソッドの変数名は`a`、`e`を利用する
+
+    ```ruby
+    source_code_layout/bad/reduce_arguments.rb:3:6: C: Name reduce arguments |a, e| (accumulator, element).
+    puts numbers.reduce { |sum, n| sum + n }
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `RegexpLiteral` - // TODO
+
+    ```ruby
+    source_code_layout/bad/regexp_literal.rb:1:1: C: Use %r only for regular expressions matching more than 1 '/' character.
+    %r(\s+)
+    ^^^^^^^
+    ```
+
+- `ClassMethods` - // TODO
+
+- `SingleLineMethods` -1行関数は避ける
 
     ```ruby
     source_code_layout/bad/single_line_methods.rb:1:1: C: Avoid single-line method definitions.
     def too_much; puts 'a'; puts 'b'; end
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `WordArray` - 文字列の配列は`%w`、`%W`を利用する
+
+    ```ruby
+    source_code_layout/bad/word_array.rb:1:5: C: Use %w or %W for array of words.
+    a = ['aaa', 'bbb', 'ccc']
+        ^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `SpaceIndsideHashLiteralBraces` - ハッシュの波括弧`{`と`}`の間に空白を入れる
+
+    ```ruby
+    source_code_layout/bad/surrounding_space.rb:13:7: C: Space inside hash literal braces missing.
+    bbb = {aaa: 'ccc'}
+          ^
+    ```
+
+- `LineContinuation` - `\`を利用した継続した行を避ける
+
+    ```ruby
+    source_code_layout/bad/line_continuation.rb:1:14: C: Avoid the use of the line continuation character(\).
+    result = 1 - \
+                 ^
+    ```
+
+- `TrivialAccessors` - `setter`、`getter`を利用しない、`attr`を利用する
+
+    ```ruby
+    source_code_layout/bad/trivial_accessors.rb:6:3: C: Use attr_reader to define trivial reader methods.
+    def name
+    ^^^
+    source_code_layout/bad/trivial_accessors.rb:10:3: C: Use attr_writer to define trivial writer methods.
+    def set_name (name)
+    ^^^
+    ```
+
+- `LeadingCommentSpace` - コメント`#`の後に1文字空白を入れる
+
+    ```ruby
+    source_code_layout/bad/leading_comment_space.rb:1:1: C: Missing space after #.
+    #test
+    ^^^^^
     ```
