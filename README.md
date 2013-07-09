@@ -15,7 +15,7 @@ source_code_layout/bad/utf8.rb:1:1: C: Missing utf-8 encoding comment.
 ^
 ```
 
-### `LingLength` - 1行に80文字までにする
+### `LingLength` - 1行に80文字以内にする
 
 - 文字数は変更可能
 
@@ -25,7 +25,15 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                                                                                ^^
 ```
 
-### `MethoLength` - // TODO
+### `MethodLength` - メソッドは10行以内にする
+
+- 行数は指定可能
+
+```ruby
+source_code_layout/bad/method_length.rb:1:1: C: Method has too many lines. [11/10]
+def test
+^^^
+```
 
 ### `Tab` - インデントにはspaceを利用、tabを利用しない
 
@@ -43,7 +51,7 @@ puts 'cc'
          ^
 ```
 
-### whenとcaseは同じインデントにする
+### `CaseIndentation` - whenとcaseは同じインデントにする
 
 ```ruby
 source_code_layout/bad/case_indentation.rb:3:3: C: Indent when as deep as case.
@@ -51,7 +59,7 @@ source_code_layout/bad/case_indentation.rb:3:3: C: Indent when as deep as case.
     ^^^^
 ```
 
-### メソッドとメソッドの間に空白行あける
+### `EmptyLineBetweenDefs` - メソッドとメソッドの間に空白行あける
 
 ```ruby
 source_code_layout/bad/empty_line_between_defs.rb:4:1: C: Use empty lines between defs.
@@ -59,13 +67,13 @@ def test2
 ^^^
 ```
 
-### 2行以上空白行をあけない
+### `EmptyLines` - 2行以上空白行をあけない
 
 ```ruby
 source_code_layout/bad/empty_lines.rb:5:1: C: Extra blank line detected.
 ```
 
-### オペレーターの前後には空白をいれる
+### `SpaceAroundOperatos` - オペレーターの前後には空白をいれる
 
 ```
 source_code_layout/bad/surrounding_space.rb:1:3: C: Surrounding space missing for operator '='.
@@ -73,7 +81,7 @@ a =2
   ^
 ```
 
-### 波括弧（brace）の前後には空白を入れる
+### `SpaceAroundBraces` - 波括弧（brace）の前後には空白を入れる
 
 ```ruby
 source_code_layout/bad/surrounding_space.rb:3:14: C: Space inside hash literal braces missing.
@@ -81,7 +89,7 @@ aaa = { aaa: 'bbb'}
              ^^^^^
 ```
 
-### 丸括弧（paren）の後には空白を入れない
+### `SpaceInsideParens` - 丸括弧（paren）の後には空白を入れない
 
 ```ruby
 source_code_layout/bad/surrounding_space.rb:7:3: C: Space inside parentheses detected.
@@ -89,7 +97,7 @@ source_code_layout/bad/surrounding_space.rb:7:3: C: Space inside parentheses det
   ^
 ```
 
-### 角括弧（bracket）の後には空白を入れない
+### `SpaceInsideBrackets` - 角括弧（bracket）の後には空白を入れない
 
 ```ruby
 source_code_layout/bad/surrounding_space.rb:5:2: C: Space inside square brackets detected.
@@ -97,7 +105,7 @@ source_code_layout/bad/surrounding_space.rb:5:2: C: Space inside square brackets
  ^
 ```
 
-### カンマの後に空白を入れる
+### `SpaceAfterConma` - カンマの後に空白を入れる
 
 ```ruby
 source_code_layout/bad/space_after.rb:1:2: C: Space missing after comma.
@@ -105,7 +113,7 @@ a,b = 1, 2
  ^
 ```
 
-### セミコロンの後に空白を入れる
+### `SpaceAfterSemicolon` - セミコロンの後に空白を入れる
 
 ```ruby
 source_code_layout/bad/space_after.rb:5:21: C: Space missing after semicolon.
@@ -113,7 +121,7 @@ source_code_layout/bad/space_after.rb:5:21: C: Space missing after semicolon.
                     ^
 ```
 
-### コロンの後に空白を入れる
+### `SpaceAfterColon` - コロンの後に空白を入れる
 
 ```ruby
 source_code_layout/bad/space_after.rb:3:13: C: Space missing after colon.
@@ -121,7 +129,7 @@ source_code_layout/bad/space_after.rb:3:13: C: Space missing after colon.
             ^
 ```
 
-### ifなどの後に空白を入れる
+### `SpaceAfterControlKeyword` - ifなどの後に空白を入れる
 
 ```ruby
 source_code_layout/bad/space_after.rb:7:1: C: Use space after control keywords.
@@ -129,9 +137,9 @@ if(aaa)
     ^^
 ```
 
-### HashSyntax
+### HashSyntax // TODO
 
-### 改行コードはLFを利用、CRLFを利用しない
+### `EndOfLine` - 改行コードはLFを利用、CRLFを利用しない
 
 ```ruby
 source_code_layout/bad/end_of_line.rb:1:11: C: Carriage return character detected.
@@ -139,7 +147,7 @@ puts 'aaa'
           ^
 ```
 
-### 6桁を超える数値（リテラル）を扱う場合、アンダースコアを利用する
+### `NumericLiterals ` - 6桁を超える数値（リテラル）を扱う場合、アンダースコアを利用する
 
 ```ruby
 source_code_layout/a.rb:1:6: C: Add underscores to large numeric literals to improve their readability.
@@ -147,9 +155,9 @@ puts 100000
      ^^^^^^
 ```
 
-### # Align the parameters of a method call if they span more than one line.
+### # Align the parameters of a method call if they span more than one line. // TODO
 
-### defの引数には丸括弧を利用する
+### `DefWithParentheses` - defの引数には丸括弧を利用する
 
 ```ruby
 source_code_layout/bad/def_parentheses.rb:1:10: C: Use def with parentheses when there are arguments.
@@ -157,7 +165,7 @@ def test aaa, bbb
          ^^^^^^^^
 ```
 
-### defに引数がない場合は丸括弧を利用しない
+### `DefWithoutParentheses` - defに引数がない場合は丸括弧を利用しない
 
 ```ruby
 source_code_layout/bad/def_parentheses.rb:4:10: C: Omit the parentheses in defs when the method doesn't accept any arguments.
@@ -165,14 +173,14 @@ def test2()
          ^
 ```
 
-### if x;の場合は三項演算子を利用する // TODO
+### `IfWithSelmicolon` - if x;の場合は三項演算子を利用する // TODO
 
 ```ruby
 source_code_layout/bad/if_with_semicolon.rb:1:1: C: Never use if x; Use the ternary operator instead.
 if aaa > 0; puts 'true' end
 ```
 
-### if/unlessが複数行になる場合はthenを利用しない
+### `MultilineIfThen` - if/unlessが複数行になる場合はthenを利用しない
 
 ```ruby
 source_code_layout/bad/multiline_if_then.rb:2:1: C: Never use then for multi-line if/unless.
@@ -180,7 +188,7 @@ if aaa > 2 then
     ^^^
 ```
 
-### if/then/else/endの場合、三項演算子を利用する // TODO
+### `OneLineConditional` - if/then/else/endの場合、三項演算子を利用する // TODO
 
 ```ruby
 source_code_layout/bad/one_line_conditional.rb:1:10: C: Favor the ternary operator (?:) over if/then/else/end constructs.
@@ -188,7 +196,7 @@ result = if aaa > 5 then puts 'over' else puts 'under' end
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-### 1行ブロックでは{...}を利用する
+### `Blocks` - 1行ブロックでは{...}を利用する
 
 ```ruby
 source_code_layout/bad/blocks.rb:3:12: C: Prefer {...} over do...end for single-line blocks.
@@ -196,7 +204,7 @@ names.each do |name| puts name end
            ^^
 ```
 
-### 複数行ブロックでは{...}を利用しない
+### `Blocks` - 複数行ブロックでは{...}を利用しない
 
 ```ruby
 source_code_layout/bad/blocks.rb:5:12: C: Avoid using {...} for multi-line blocks.
@@ -204,7 +212,7 @@ names.each { |name|
            ^
 ```
 
-### メソッドに6個以上引数を設定しない
+### `ParameterLists` - メソッドに6個以上引数を設定しない
 
 - 最大数は設定可能
 
@@ -214,12 +222,20 @@ def test (aaa, bbb, ccc, ddd, eee, fff)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-### 特別な理由がない限り、string（リテラル）はシングルクォートを利用する
+### `StringLeterals` - 特別な理由がない限り、string（リテラル）はシングルクォートを利用する
 
 ```ruby
 source_code_layout/bad/string_literals.rb:1:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
 aaa = "bbb"
       ^^^^^
+```
+
+### `NestedTernaryOperator` - 三項演算子をネストしない
+
+```ruby
+source_code_layout/bad/ternary_operator.rb:1:19: C: Ternary operators must not be nested. Prefer if/else constructs instead.
+some_condition ? (1 ?  'a' : 'b') : somthing_else
+                  ^^^^^^^^^^^^^^
 ```
 
 ### 式や文をわける時にセミコロン「;」を利用しない
