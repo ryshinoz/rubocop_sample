@@ -380,9 +380,17 @@
          ^^
     ```
 
-- `AvoidPerlBackrefs` - Perlスタイルの正規表現を使わない
+- `AvoidPerlBackrefs` - // TODO
+- `AvoidClassVars` - // TODO
+- `VariableInterpolation` - // TODO
 
-- 式や文をわける時にセミコロン「;」を利用しない
+    ```ruby
+    source_code_layout/bad/variable_interpolation.rb:2:9: C: Replace interpolated var @aaa with expression #{@aaa}.
+    bbb = "#@aaa"
+            ^^^^
+    ```
+
+- `Semicolon` - 式や文をわける時にセミコロン「;」を利用しない
 
     ```ruby
     source_code_layout/bad/semicolon.rb:2:11: C: Do not use semicolons to terminate expressions.
@@ -390,7 +398,93 @@
               ^
     ```
 
+- `FavorSprintf` - `String#%`を利用しない、`sprinf`を利用する
 
+    ```ruby
+    source_code_layout/bad/favor_sprintf.rb:3:12: C: Favor sprintf over String#%.
+    "aaa = %s" % aaa
+               ^
+    ```
+
+- `FavorJoin` - `Array#*`を利用しない、`Array#join`を利用する
+
+    - 動作確認できなかった
+
+- `Alias` - `alias`を利用しない、`alias_method`を利用する
+
+    ```ruby
+    source_code_layout/bad/alias.rb:6:3: C: Use alias_method instead of alias.
+      alias message test2
+        ^^^^^
+    ```
+
+- `Not` - `not`を利用しない、`!`を利用する
+
+    ```ruby
+    source_code_layout/bad/not.rb:1:6: C: Use ! instead of not.
+    x = (not aaa)
+         ^^^
+    ```
+
+- `RescueModifier` - // TODO
+
+    ```ruby
+    source_code_layout/bad/rescue_modifier.rb:1:1: C: Avoid using rescue in its modifier form.
+    read_file rescue handle_error($!)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `EnsureReturn` - // TODO lint
+- `HandleExceptions` - // TODO lint
+
+- `AsciiIdentifiers` - // TODO
+
+    ```ruby
+    source_code_layout/bad/ascii_identifiers.rb:1:1: C: Use only ascii symbols in identifiers.
+    変数 = 'a'
+    ^^^^^^
+    ```
+
+- `AsciiComments` - コメントにAscii文字以外を利用しない
+
+    ```ruby
+    source_code_layout/bad/ascii_comments.rb:1:1: C: Use only ascii symbols in comments.
+    # 日本語
+    ^^^^^^^^^^^
+    ```
+
+- `BlockComments` - ブロックコメントを利用しない
+
+    ```ruby
+    source_code_layout/bad/block_comments.rb:1:1: C: Do not use block comments.
+    =begin
+    ```
+
+- `RescueException` - // TODO lint
+
+- `EmptyLiteral` - `Array.new`を利用しない、`[]`リテラルを利用する
+
+    ```ruby
+    source_code_layout/bad/empty_literal.rb:1:7: C: Use array literal [] instead of Array.new.
+    arr = Array.new
+    ^^^^^^^^^
+    ```
+
+- `EmptyLiteral` - `Hash.new`を利用しない、`{}`リテラルを利用する
+
+    ```ruby
+    source_code_layout/bad/empty_literal.rb:2:8: C: Use hash literal {} instead of Hash.new.
+    hash = Hash.new
+           ^^^^^^^^
+    ```
+
+- `EmptyLiteral` - `String.new`を利用しない、`''`リテラルを利用する
+
+    ```ruby
+    source_code_layout/bad/empty_literal.rb:3:7: C: Use string literal '' instead of String.new.
+    str = String.new
+          ^^^^^^^^^^
+    ```
 
 - Prefer a single-line format for class difinitions with no body.
 

@@ -1,0 +1,2 @@
+@aaa = 'uoo'
+bbb = "#@aaa"
