@@ -306,6 +306,82 @@
     ^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
+- `SpaceAroundEqualsInParameterDefault` - メソッドのデフォルト値の=前後にはspaceを入れる
+
+    ```ruby
+    source_code_layout/bad/surrounding_space.rb:9:13: C: Surrounding space missing in default value assignment.
+    def test (a =1)
+                ^
+    ```
+
+- `Lambda` - 1行ブロックの場合はlambdaリテラル（->）を利用する
+
+    ```ruby
+    source_code_layout/bad/lambda.rb:1:5: C: Use the new lambda literal syntax ->(params) {...}.
+    l = lambda { |a, b| a + b }
+        ^^^^^^
+    ```
+
+- `Lambda` - 複数行ブロックのlambdaはlambdaメソッド（lambda）を利用する
+
+    ```ruby
+    source_code_layout/bad/lambda.rb:3:5: C: Use the lambda method for multi-line lambdas.
+    l = ->(a, b) do
+        ^^
+    ```
+
+- `Proc` - 
+    
+    ```ruby
+    source_code_layout/bad/proc.rb:1:5: C: Use proc instead of Proc.new.
+    p = Proc.new { |n| puts n }
+        ^^^^^^^^
+    ```
+
+- `ParenthesesAroundCondition` - if/unless/whileの条件に()を利用しない
+
+    ```ruby
+    ParenthesesAroundCondition
+    ```
+
+- `MethodAndVariableSnakeCase` - 変数をメソッド名はスネークケースを利用する
+
+    ```ruby
+    source_code_layout/bad/method_and_variable_snake_case.rb:1:1: C: Use snake_case for methods and variables.
+    isEngineer = false
+    ^^^^^^^^^^^^^^^^^^
+    source_code_layout/bad/method_and_variable_snake_case.rb:3:1: C: Use snake_case for methods and variables.
+    def isEngineer
+    ^^^
+    ```
+
+- `ClassAndModuleCamelCase` - クラス、モジュール名はキャメルケースを利用する
+
+    ```ruby
+    source_code_layout/bad/class_and_module_camel_case.rb:1:7: C: Use CamelCase for classes and modules.
+    class Some_Class
+          ^^^^^^^^^^
+    ```
+
+- `CollectionMethos` - // TODO
+- `AvoidFor` - forではなくeachを利用する
+
+    ```ruby
+    source_code_layout/bad/avoid_for.rb:1:1: C: Prefer *each* over *for*.
+    for elem in arr do
+        ^^^
+    ```
+
+- `AvoidPerlisms` - Perlスタイルのグローバル変数を利用しない
+
+    ```ruby
+    source_code_layout/bad/avoid_perlisms.rb:1:6: C: Prefer $PROGRAM_NAME over $0.
+    puts $0
+         ^^
+    ```
+
+- `AvoidPerlBackrefs` - Perlスタイルの正規表現を使わない
+
 - 式や文をわける時にセミコロン「;」を利用しない
 
     ```ruby
@@ -313,6 +389,7 @@
     pust 'foo'; puts 'bar'
               ^
     ```
+
 
 
 - Prefer a single-line format for class difinitions with no body.
