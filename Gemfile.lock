@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (1.1.0)
+    cane (2.6.0)
+      parallel
+    parallel (0.7.1)
+    parser (2.0.0.pre1)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
+    rainbow (1.1.4)
+    rubocop (0.9.1)
+      parser (= 2.0.0.pre1)
+      rainbow (>= 1.1.4)
+    slop (3.4.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cane
+  rubocop

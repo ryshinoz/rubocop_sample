@@ -1,0 +1,11 @@
+AllCops:
+  Includes:
+    - Gemfile
+    - Rakefile
+  Excludes:
+    - bin/**
+    - vendor/**
+    - .bundle/**
+
+AsciiComments:
+  Enabled: false
