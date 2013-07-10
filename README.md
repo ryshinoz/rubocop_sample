@@ -739,8 +739,18 @@
 
 ## Lint
 
-- `EnsureReturn` - // TODO lint
+- `EnsureReturn` - `ensure`ブロック内でreturnはしない
+
+    ```ruby
+    source_code_layout/bad/ensure_return.rb:5:5: W: Never return from an ensure block.
+        return 'uooo'
+        ^^^^^^^^^^^^^
+    ```
+
 - `HandleExceptions` - // TODO lint
+
+    ```ruby
+    ```
 - `AssignmentInCondition` - // TODO lint
 - `EndAlignment` - // TODO lint
 - `Void` - // TODO lint
