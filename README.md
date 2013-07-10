@@ -364,7 +364,7 @@
     ```
 
 - `CollectionMethos` - // TODO
-- `AvoidFor` - forではなくeachを利用する
+- `AvoidFor` - forではなくeachを利用する（避ける）
 
     ```ruby
     source_code_layout/bad/avoid_for.rb:1:1: C: Prefer *each* over *for*.
@@ -372,7 +372,7 @@
         ^^^
     ```
 
-- `AvoidPerlisms` - Perlスタイルのグローバル変数を利用しない
+- `AvoidPerlisms` - Perlスタイルのグローバル変数を利用しない（避ける）
 
     ```ruby
     source_code_layout/bad/avoid_perlisms.rb:1:6: C: Prefer $PROGRAM_NAME over $0.
@@ -434,9 +434,6 @@
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `EnsureReturn` - // TODO lint
-- `HandleExceptions` - // TODO lint
-
 - `AsciiIdentifiers` - // TODO
 
     ```ruby
@@ -460,7 +457,6 @@
     =begin
     ```
 
-- `RescueException` - // TODO lint
 
 - `EmptyLiteral` - `Array.new`を利用しない、`[]`リテラルを利用する
 
@@ -512,7 +508,7 @@
 
 - `ClassMethods` - // TODO
 
-- `SingleLineMethods` -1行関数は避ける
+- `SingleLineMethods` -1行関数は利用しない（避ける）
 
     ```ruby
     source_code_layout/bad/single_line_methods.rb:1:1: C: Avoid single-line method definitions.
@@ -562,3 +558,158 @@
     #test
     ^^^^^
     ```
+
+- `ColonMethodCall` - `::`を使ってメソッドを呼び出さない 
+
+    ```ruby
+    source_code_layout/bad/colon_method_class.rb:7:10: C: Do not use :: for method calls.
+    SomeClass::some_method
+             ^^
+    ```
+
+
+- `AvoidGlobalVars` - グローバル変数を利用しない（避ける）
+
+    ```ruby
+    source_code_layout/bad/avoid_global_vars.rb:1:1: C: Do not introduce global variables.
+    $TEST = 'a'
+    ^^^^^
+    ```
+
+
+- `SymbolName` - symbol（リテラル）はスネークケースを利用する
+
+    ```ruby
+    source_code_layout/bad/symbol_name.rb:1:10: C: Use snake_case for symbols.
+    hash = { :hashKey => 'aaa' }
+             ^^^^^^^^
+    ```
+
+- `ConstantName` - 定数は全て大文字のスネークケースを利用する
+
+    ```ruby
+    source_code_layout/bad/constant_name.rb:2:3: C: Use SCREAMING_SNAKE_CASE for constants.
+    StatusError = 1
+    ^^^^^^^^^^^
+    ```
+- `AccessControl` - `public`、`private`の後は1行改行する、`public`、`private`はdefと同じ階層のインデントにする
+
+    ```ruby
+    source_code_layout/bad/access_control.rb:3:3: C: Keep a blank line before and after public.
+      public
+      ^^^^^^
+    source_code_layout/bad/access_control.rb:8:1: C: Indent private as deep as method definitions.
+    private
+    ^^^^^^^
+    ```
+
+
+- `BlockNesting` - `if`、`case`などのネストは3回以上しない（避ける）
+
+    ```ruby
+    source_code_layout/bad/block_nesting.rb:5:9: C: Avoid more than 3 levels of block nesting.
+            if ddd > 3
+            ^^^
+    ```
+
+- `CaseEquality` - `===`を利用しない（避ける）
+
+    ```ruby
+    source_code_layout/bad/case_equality.rb:3:5: C: Avoid the use of the case equality operator(===).
+    aaa === 100
+        ^^^
+    ```
+
+- `Documentation` - トップレベルの`module`、`class`にはドキュメントを作成する
+
+    ```ruby
+    source_code_layout/bad/documentation.rb:1:1: C: Missing top-level module documentation comment.
+    module SomeModule
+    ^^^^^^
+    ```
+
+- `MethodCallParentheses` - 引数のないメソッドを呼ぶときは`()`を利用しない
+
+    ```ruby
+    source_code_layout/bad/method_call_parentheses.rb:5:12: C: Do not use parentheses for method calls with no arguments.
+    test_method()
+               ^
+    ```
+
+- `WhileUntilDo` - `while`が複数行になる場合は`do`は利用しない
+
+    ```ruby
+    source_code_layout/bad/while_until_do.rb:1:13: C: Never use `do` with multi-line `while`.
+    while x > 5 do
+                ^^
+    ```
+
+- `CharacterLiteral` - 数値リテラル`?`を利用しない
+
+    ```ruby
+    source_code_layout/bad/character_literal.rb:1:8: C: Do not use the character literal - use string literal instead.
+    char = ?c
+           ^^
+    ```
+
+- `BeginBlock` - `BEGIN`ブロックを利用しない（避ける）
+
+    ```ruby
+    source_code_layout/bad/begin_block.rb:1:1: C: Avoid the use of BEGIN blocks.
+    BEGIN {
+    ^^^^^
+    ```
+
+- `EndBlock` - `END`ブロックを利用しない（避ける）、`Kernel#at_exit`を利用する
+
+    ```ruby
+    source_code_layout/bad/end_block.rb:1:1: C: Avoid the use of END blocks. Use `Kernel#at_exit` instead.
+    END {
+    ^^^
+    ```
+
+- `DotPosition` - メソッドチェーン時に改行する時は`.`を呼び出すメソッドと一緒に記述する
+
+    ```ruby
+    source_code_layout/bad/dot_position.rb:7:4: C: Place the . on the next line, together with the method name.
+    aaa.
+       ^
+    ```
+
+- `Attr` - `attr`は利用しない、`attr_reader`を利用する
+
+    ```ruby
+    source_code_layout/bad/attr.rb:2:3: C: Do not use `attr`. Use `attr_reader` instead.
+      attr :name
+      ^^^^
+    ```
+
+- `SymbolArray` - symbolの配列は`%i`を利用する
+
+    - Ruby2.0.0対象、Ruby1.9.xはチェックしない
+
+    ```ruby
+    source_code_layout/bad/symbol_array.rb:1:7: C: Use %i or %I for array of symbols.
+    arr = [:a, :b, :c]
+          ^^^^^^^^^^^^
+    ```
+
+## Lint
+
+- `EnsureReturn` - // TODO lint
+- `HandleExceptions` - // TODO lint
+- `AssignmentInCondition` - // TODO lint
+- `EndAlignment` - // TODO lint
+- `Void` - // TODO lint
+- `UnreachlableCode` - // TODO lint
+- `UnusedLocalVariable` - // TODO lint
+- `ShadowingOuterLocalVariable` - // TODO lint
+- `EndInMethod` - // TODO lint
+- `LiteralInCondition` - // TODO lint
+- `Eval` - // TODO lint
+- `RescueException` - // TODO lint
+- `Loop` - // TODO lint
+
+## Rails
+
+- `Validation` - // TODO rails
