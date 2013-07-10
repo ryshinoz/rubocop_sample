@@ -4,7 +4,7 @@
 
 ## Style
 
-- `Encoding` - 文字コードはUTF-8にする
+- `Encoding` - 文字コードは`UTF-8`にする
 
     - 実際の文字コードをチェックしているわけではなく、1行目の`# coding: utf-8`を確認
     - Ruby1.9.x対象、Ruby2.0.0以降はチェックしない
@@ -35,7 +35,7 @@
     ^^^
     ```
 
-- `Tab` - インデントにはspaceを利用、tabを利用しない
+- `Tab` - インデントには空白を利用、`tab`を利用しない
 
     ```ruby
     source_code_layout/bad/tab.rb:2:1: C: Tab detected.
@@ -43,7 +43,7 @@
     ^^^^^^^^
     ```
 
-- `TrailingWhitespace` - 行末にspaceを利用しない
+- `TrailingWhitespace` - 行末に空白を利用しない
 
     ```ruby
     source_code_layout/bad/trailing_whitespace.rb:1:10: C: Trailing whitespace detected.
@@ -51,7 +51,7 @@
              ^
     ```
 
-- `CaseIndentation` - whenとcaseは同じインデントにする
+- `CaseIndentation` - `when`と`case`は同じインデントにする
 
     ```ruby
     source_code_layout/bad/case_indentation.rb:3:3: C: Indent when as deep as case.
@@ -129,7 +129,7 @@
                 ^
     ```
 
-- `SpaceAfterControlKeyword` - ifなどの後に空白を入れる
+- `SpaceAfterControlKeyword` - `if`などの後に空白を入れる
 
     ```ruby
     source_code_layout/bad/space_after.rb:7:1: C: Use space after control keywords.
@@ -137,9 +137,15 @@
         ^^
     ```
 
-- HashSyntax // TODO
+- `HashSyntax` - ハッシュキーが`symbol`の場合、Ruby1.8.xの記述をしない
 
-- `EndOfLine` - 改行コードはLFを利用、CRLFを利用しない
+    ```ruby
+    source_code_layout/bad/hash_syntax.rb:1:10: C: Ruby 1.8 hash syntax detected
+    hash = { :one => 1 }
+             ^^^^^^^
+    ```
+
+- `EndOfLine` - 改行コードは`LF`を利用、`CRLF`を利用しない
 
     ```ruby
     source_code_layout/bad/end_of_line.rb:1:11: C: Carriage return character detected.
@@ -155,9 +161,7 @@
          ^^^^^^
     ```
 
-- Align the parameters of a method call if they span more than one line. // TODO
-
-- `DefWithParentheses` - defの引数には丸括弧を利用する
+- `DefWithParentheses` - メソッドの引数には丸括弧を利用する
 
     ```ruby
     source_code_layout/bad/def_parentheses.rb:1:10: C: Use def with parentheses when there are arguments.
@@ -165,7 +169,7 @@
              ^^^^^^^^
     ```
 
-- `DefWithoutParentheses` - defに引数がない場合は丸括弧を利用しない
+- `DefWithoutParentheses` - メソッドに引数がない場合は丸括弧を利用しない
 
     ```ruby
     source_code_layout/bad/def_parentheses.rb:4:10: C: Omit the parentheses in defs when the method doesn't accept any arguments.
@@ -173,14 +177,14 @@
              ^
     ```
 
-- `IfWithSelmicolon` - if x;の場合は三項演算子を利用する // TODO
+- `IfWithSelmicolon` - `if x;`の場合は三項演算子を利用する // TODO
 
     ```ruby
     source_code_layout/bad/if_with_semicolon.rb:1:1: C: Never use if x; Use the ternary operator instead.
     if aaa > 0; puts 'true' end
     ```
     
-- `MultilineIfThen` - if/unlessが複数行になる場合はthenを利用しない
+- `MultilineIfThen` - `if`/`unless`が複数行になる場合は`then`を利用しない
 
     ```ruby
     source_code_layout/bad/multiline_if_then.rb:2:1: C: Never use then for multi-line if/unless.
@@ -188,7 +192,7 @@
         ^^^
     ```
 
-- `OneLineConditional` - if/then/else/endの場合、三項演算子を利用する // TODO
+- `OneLineConditional` - `if`/`then`/`else`/`end`の場合、三項演算子を利用する // TODO
 
     ```ruby
     source_code_layout/bad/one_line_conditional.rb:1:10: C: Favor the ternary operator (?:) over if/then/else/end constructs.
@@ -196,7 +200,7 @@
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `Blocks` - 1行ブロックでは{...}を利用する
+- `Blocks` - 1行ブロックでは`{...}`を利用する
 
     ```ruby
     source_code_layout/bad/blocks.rb:3:12: C: Prefer {...} over do...end for single-line blocks.
@@ -204,7 +208,7 @@
                ^^
     ```
 
-- `Blocks` - 複数行ブロックでは{...}を利用しない（避ける）
+- `Blocks` - 複数行ブロックでは`{...}`を利用しない（避ける）
 
     ```ruby
     source_code_layout/bad/blocks.rb:5:12: C: Avoid using {...} for multi-line blocks.
@@ -222,7 +226,7 @@
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `StringLeterals` - 特別な理由がない限り、string（リテラル）はシングルクォートを利用する
+- `StringLeterals` - 特別な理由がない限り、`string`（リテラル）はシングルクォートを利用する
 
     ```ruby
     source_code_layout/bad/string_literals.rb:1:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
@@ -247,7 +251,7 @@
                       ^^^^^^^^^^^^^^
     ```
 
-- `UnlessElse` - else付きのunlessは利用しない
+- `UnlessElse` - `else`付きの`unless`は利用しない
 
     ```ruby
     source_code_layout/bad/unless_else.rb:1:1: C: Never use unless with else. Rewrite these with the positive case first.
@@ -255,7 +259,7 @@
     ^^^
     ```
 
-- `AndOr` - andには&&、orには||を利用する
+- `AndOr` - `and`には`&&`、`or`には`||`を利用する
 
     ``` ruby
     source_code_layout/bad/and_or.rb:4:8: C: Use && instead of and.
@@ -266,7 +270,7 @@
                ^^
     ```
 
-- `WhenThen` - when x;は利用しない、代わりにwhen x thenを利用する
+- `WhenThen` - `when x;`は利用しない、代わりに`when x then`を利用する
 
     ```ruby
     source_code_layout/bad/when_then.rb:3:7: C: Never use "when x;". Use "when x then" instead.
@@ -274,7 +278,7 @@
           ^
     ```
 
-- `IfUnlessModifier` - if/unlessのボディが1行の場合、かっこよくする
+- `IfUnlessModifier` - `if`/`unless`のボディが1行の場合、かっこよくする
 
     ```ruby
     source_code_layout/bad/favor_modifer.rb:2:1: C: Favor modifier if/unless usage when you have a single-line body. Another good alternative is the usage of control flow &&/||.
@@ -282,7 +286,7 @@
         ^^^
     ```
 
-- `WhileUntilModifier` - while/untilのボディが1行の場合、かっこよくする
+- `WhileUntilModifier` - `while`/`until`のボディが1行の場合、かっこよくする
 
     ```ruby
     source_code_layout/bad/favor_modifer.rb:6:1: C: Favor modifier while/until usage when you have a single-line body.
@@ -290,7 +294,7 @@
         ^^^
     ```
 
-- `FavorUnlessOverNegatedIf` - ifで負の条件チェックする場合はunlessを利用する
+- `FavorUnlessOverNegatedIf` - `if`で負の条件チェックする場合は`unless`を利用する
 
     ```ruby
     source_code_layout/bad/favor_unless_over_negated_if.rb:3:1: C: Favor unless (or control flow or) over if for negative conditions.
@@ -298,7 +302,7 @@
     ^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `FavorUntilOverNeatedWhile` - whileを負の条件でチェックする場合はuntilを利用する
+- `FavorUntilOverNeatedWhile` - `while`を負の条件でチェックする場合は`until`を利用する
 
     ```ruby
     source_code_layout/bad/favor_unless_over_negated_if.rb:5:1: C: Favor until over while for negative conditions.
@@ -306,7 +310,7 @@
     ^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `SpaceAroundEqualsInParameterDefault` - メソッドのデフォルト値の=前後にはspaceを入れる
+- `SpaceAroundEqualsInParameterDefault` - メソッドのデフォルト値の=前後には空白を入れる
 
     ```ruby
     source_code_layout/bad/surrounding_space.rb:9:13: C: Surrounding space missing in default value assignment.
@@ -314,7 +318,7 @@
                 ^
     ```
 
-- `Lambda` - 1行ブロックの場合はlambdaリテラル（->）を利用する
+- `Lambda` - 1行ブロックの場合はlambdaリテラル`->`を利用する
 
     ```ruby
     source_code_layout/bad/lambda.rb:1:5: C: Use the new lambda literal syntax ->(params) {...}.
@@ -322,7 +326,7 @@
         ^^^^^^
     ```
 
-- `Lambda` - 複数行ブロックのlambdaはlambdaメソッド（lambda）を利用する
+- `Lambda` - 複数行ブロックのlambdaはlambdaメソッド`lambda`を利用する
 
     ```ruby
     source_code_layout/bad/lambda.rb:3:5: C: Use the lambda method for multi-line lambdas.
@@ -330,18 +334,12 @@
         ^^
     ```
 
-- `Proc` - 
-    
-    ```ruby
-    source_code_layout/bad/proc.rb:1:5: C: Use proc instead of Proc.new.
-    p = Proc.new { |n| puts n }
-        ^^^^^^^^
-    ```
-
-- `ParenthesesAroundCondition` - if/unless/whileの条件に()を利用しない
+- `ParenthesesAroundCondition` - `if`/`unless`/`while`/`until`の条件に`()`を利用しない
 
     ```ruby
-    ParenthesesAroundCondition
+    source_code_layout/bad/parentheses_around_condition.rb:1:4: C: Don't use parentheses around the condition of an if/unless/while/until
+    if (x > 10)
+       ^^^^^^^^
     ```
 
 - `MethodAndVariableSnakeCase` - 変数をメソッド名はスネークケースを利用する
@@ -363,8 +361,7 @@
           ^^^^^^^^^^
     ```
 
-- `CollectionMethos` - // TODO
-- `AvoidFor` - forではなくeachを利用する（避ける）
+- `AvoidFor` - `for`ではなく`each`を利用する（避ける）
 
     ```ruby
     source_code_layout/bad/avoid_for.rb:1:1: C: Prefer *each* over *for*.
@@ -380,17 +377,7 @@
          ^^
     ```
 
-- `AvoidPerlBackrefs` - // TODO
-- `AvoidClassVars` - // TODO
-- `VariableInterpolation` - // TODO
-
-    ```ruby
-    source_code_layout/bad/variable_interpolation.rb:2:9: C: Replace interpolated var @aaa with expression #{@aaa}.
-    bbb = "#@aaa"
-            ^^^^
-    ```
-
-- `Semicolon` - 式や文をわける時にセミコロン「;」を利用しない
+- `Semicolon` - 式や文をわける時にセミコロン`;`を利用しない
 
     ```ruby
     source_code_layout/bad/semicolon.rb:2:11: C: Do not use semicolons to terminate expressions.
@@ -424,22 +411,6 @@
     source_code_layout/bad/not.rb:1:6: C: Use ! instead of not.
     x = (not aaa)
          ^^^
-    ```
-
-- `RescueModifier` - // TODO
-
-    ```ruby
-    source_code_layout/bad/rescue_modifier.rb:1:1: C: Avoid using rescue in its modifier form.
-    read_file rescue handle_error($!)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ```
-
-- `AsciiIdentifiers` - // TODO
-
-    ```ruby
-    source_code_layout/bad/ascii_identifiers.rb:1:1: C: Use only ascii symbols in identifiers.
-    変数 = 'a'
-    ^^^^^^
     ```
 
 - `AsciiComments` - コメントにAscii文字以外を利用しない
@@ -497,16 +468,6 @@
     puts numbers.reduce { |sum, n| sum + n }
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
-
-- `RegexpLiteral` - // TODO
-
-    ```ruby
-    source_code_layout/bad/regexp_literal.rb:1:1: C: Use %r only for regular expressions matching more than 1 '/' character.
-    %r(\s+)
-    ^^^^^^^
-    ```
-
-- `ClassMethods` - // TODO
 
 - `SingleLineMethods` -1行関数は利用しない（避ける）
 
@@ -693,6 +654,88 @@
     arr = [:a, :b, :c]
           ^^^^^^^^^^^^
     ```
+
+- `RescueModifier` - `rescue`はキャッチする例外を指定して利用する
+
+    ```ruby
+    source_code_layout/bad/rescue_modifier.rb:1:1: C: Avoid using rescue in its modifier form.
+    read_file rescue handle_error($!)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ```
+
+- `AsciiIdentifiers` - symbolにはascii文字以外を利用しない
+
+    ```ruby
+    source_code_layout/bad/ascii_identifiers.rb:1:1: C: Use only ascii symbols in identifiers.
+    変数 = 'a'
+    ^^^^^^
+    ```
+
+- `VariableInterpolation` - 文字列内で式展開する場合、`#{}`を利用する
+
+    ```ruby
+    source_code_layout/bad/variable_interpolation.rb:2:9: C: Replace interpolated var @aaa with expression #{@aaa}.
+    bbb = "#@aaa"
+            ^^^^
+    ```
+
+- `Proc` - `Proc.new`を利用しない、`proc`を利用する
+    
+    ```ruby
+    source_code_layout/bad/proc.rb:1:5: C: Use proc instead of Proc.new.
+    p = Proc.new { |n| puts n }
+        ^^^^^^^^
+    ```
+
+- `ClassMethods` - クラスメソッドは`self`を利用する
+
+    ```ruby
+    source_code_layout/bad/class_method.rb:2:7: C: Prefer self over class/module for class/module methods.
+    def Test.test_method
+        ^^^^
+    ```
+
+- `CollectionMethos` - `map`/`reduce`/`find`/`select`を利用する
+
+    ```ruby
+    source_code_layout/bad/collection_methods.rb:2:3: C: Prefer map over collect.
+    a.collect { |x| x * 10 }
+      ^^^^^^^
+    source_code_layout/bad/collection_methods.rb:4:3: C: Prefer reduce over inject.
+    a.inject{ |sum, n| sum + n }
+      ^^^^^^
+    source_code_layout/bad/collection_methods.rb:6:3: C: Prefer find over detect.
+    a.detect { |item| item > 3 }
+      ^^^^^^
+    source_code_layout/bad/collection_methods.rb:8:3: C: Prefer select over find_all.
+    a.find_all { |item| item > 3 }
+      ^^^^^^^^
+    ```
+
+- `AvoidClassVars` - クラス変数を利用しない、インスタンス変数を利用する
+
+    ```ruby
+    source_code_layout/bad/avoid_class_vars.rb:2:3: C: Replace class var @@aaa with a class instance var.
+    @@aaa = 1
+    ^^^^^
+    ```
+
+- `RegexpLiteral` - // TODO
+
+    ```ruby
+    source_code_layout/bad/regexp_literal.rb:1:1: C: Use %r only for regular expressions matching more than 1 '/' character.
+    %r(\s+)
+    ^^^^^^^
+    ```
+
+- `AvoidPerlBackrefs` - // TODO
+
+    ```ruby
+    source_code_layout/bad/avoid_perl_backrefs.rb:3:6: C: Prefer the use of MatchData over $1.
+    puts $1
+         ^^
+    ```
+
 
 ## Lint
 

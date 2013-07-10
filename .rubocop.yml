@@ -9,3 +9,10 @@ AllCops:
 
 SymbolArray:
   Enabled: true
+
+CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'

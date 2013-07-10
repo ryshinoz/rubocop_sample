@@ -1,3 +1,3 @@
 class SomeClass
-  var aaa
+  @@aaa = 1
 end

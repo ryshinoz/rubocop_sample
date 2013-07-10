@@ -1,9 +1,5 @@
-class SomeMethod
-
-  def self.some_method
+class Test
+  def Test.test_method
     puts 'aaa'
   end
-
 end
-
-SomeMethod::some_method
