@@ -750,18 +750,105 @@
 - `HandleExceptions` - // TODO lint
 
     ```ruby
+    aaa
     ```
-- `AssignmentInCondition` - // TODO lint
-- `EndAlignment` - // TODO lint
-- `Void` - // TODO lint
-- `UnreachlableCode` - // TODO lint
-- `UnusedLocalVariable` - // TODO lint
-- `ShadowingOuterLocalVariable` - // TODO lint
-- `EndInMethod` - // TODO lint
-- `LiteralInCondition` - // TODO lint
-- `Eval` - // TODO lint
-- `RescueException` - // TODO lint
-- `Loop` - // TODO lint
+- `AssignmentInCondition` - `if`/`while`/`until`での条件句hkに`=`を利用しない
+
+    ```ruby
+    source_code_layout/bad/assignment_in_condition.rb:3:6: W: Assignment in condition - you probably meant to use ==.
+    if v = array.grep(/foo/)
+         ^
+    ```
+
+- `EndAlignment` - `end`を正しくインデントする
+
+    ```ruby
+    source_code_layout/bad/end_alignment.rb:2:17: W: end at 2, 16 is not aligned with if at 1, 11
+                    end
+                    ^^^
+    source_code_layout/bad/end_alignment.rb:6:12: W: end at 6, 11 is not aligned with variable = lambda do |i| at 4, 0
+               end
+               ^^^
+    ```
+
+- `Void` - 宣言だけして使わない変数や意味のない計算などしない
+    
+    ```ruby
+    source_code_layout/bad/void.rb:3:3: W: Operator * used in void context.
+    a * 5
+      ^
+    source_code_layout/bad/void.rb:4:1: W: Literal 'aaaa' used in void context
+    'aaaa'
+    ^^^^^^
+    source_code_layout/bad/void.rb:7:3: W: Variable SOME_VAR used in void context.
+    SOME_VAR
+    ^^^^^^^^
+    ```
+
+- `UnreachlableCode` - 到達しないコードを作らない
+
+    ```ruby
+    source_code_layout/bad/unreachable_code.rb:3:3: W: Unreachable code detected.
+      puts 'hello'
+      ^^^^^^^^^^^^
+    ```
+
+- `UnusedLocalVariable` - 利用しないローカル変数を作らない
+
+    ```ruby
+    source_code_layout/bad/unused_local_variable.rb:2:3: W: Assigned but unused variable - b
+      b = 1
+      ^^^^^
+    ```
+
+- `ShadowingOuterLocalVariable` - ブロック内と外で同じローカル変数を利用しない
+
+    ```ruby
+    source_code_layout/bad/shadowing_outer_local_variable.rb:2:12: W: Shadowing outer local variable - x
+    5.times { |x| puts x }
+    ```
+
+- `EndInMethod` - メソッド内で`END`を利用しない、`at_exit`を利用する
+
+    ```ruby
+    source_code_layout/bad/end_in_method.rb:2:3: W: END found in method definition. Use `at_exit` instead.
+      END {
+      ^^^
+    ```
+
+- `LiteralInCondition` - 条件にリテラルを利用しない
+
+    ```ruby
+    source_code_layout/bad/literal_in_condition.rb:1:5: W: Literal true appeared in a condition.
+    if (true)
+        ^^^^
+    ```
+
+- `Eval` - `eval`を利用しない
+
+    ```ruby
+    source_code_layout/bad/eval.rb:1:1: W: The use of eval is a serious security risk.
+    eval '3 + 4'
+    ^^^^
+    ```
+
+- `RescueException` - `resuce`で`Exception`をキャッチしない
+
+    - exitとか処理できない
+
+    ```ruby
+    source_code_layout/bad/rescue_exception.rb:3:1: W: Avoid rescuing the Exception class.
+    rescue Exception
+    ^^^^^^^^^^^^^
+    ```
+
+- `Loop` - `begin`/`end`/`until`、`begin`/`end`/`while`を利用しない、`Kernel#loop`を利用する
+
+    ```ruby
+    source_code_layout/bad/loop.rb:4:5: W: Use Kernel#loop with break rather than begin/end/until(or while).
+    end while val < 0
+        ^^^^^
+    ```
 
 ## Rails
 
