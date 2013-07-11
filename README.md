@@ -498,6 +498,8 @@
 
 - `SpaceIndsideHashLiteralBraces` - ハッシュの波括弧`{`と`}`の間に空白を入れる
 
+    - 設定で逆にもできる
+
     ```ruby
     source_code_layout/bad/surrounding_space.rb:13:7: C: Space inside hash literal braces missing.
     bbb = {aaa: 'ccc'}
@@ -512,7 +514,7 @@
                  ^
     ```
 
-- `TrivialAccessors` - `setter`、`getter`を利用しない、`attr`を利用する
+- `TrivialAccessors` - `setter`、`getter`を利用しない、`attr_reader`、`attr_writer`を利用する
 
     ```ruby
     source_code_layout/bad/trivial_accessors.rb:6:3: C: Use attr_reader to define trivial reader methods.
@@ -539,8 +541,7 @@
              ^^
     ```
 
-
-- `AvoidGlobalVars` - グローバル変数を利用しない（避ける）
+- `AvoidGlobalVars` - 自前のグローバル変数を利用しない（避ける）
 
     ```ruby
     source_code_layout/bad/avoid_global_vars.rb:1:1: C: Do not introduce global variables.
@@ -574,7 +575,6 @@
     private
     ^^^^^^^
     ```
-
 
 - `BlockNesting` - `if`、`case`などのネストは3回以上しない（避ける）
 
@@ -870,6 +870,5 @@
     ```
 
 ## Rails
-
 
 - `Validation` - `validates_acceptance_of`など古いvalidationメソッドを利用しない

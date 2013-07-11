@@ -11,3 +11,4 @@ def test (a =1)
 end
 
 bbb = {aaa: 'ccc'}
+bbb = { aaa: 'ccc' }
