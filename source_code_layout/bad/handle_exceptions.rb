@@ -1,1 +1,4 @@
-do_something rescue nil
+begin
+  puts 'uhoho'
+rescue SomeError
+end

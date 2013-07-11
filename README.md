@@ -27,7 +27,8 @@
 
 - `MethodLength` - メソッドは10行以内にする
 
-    - 行数は指定可能
+    - 行数は変更可能
+    - コメントを含めるか指定可能
 
     ```ruby
     source_code_layout/bad/method_length.rb:1:1: C: Method has too many lines. [11/10]
@@ -82,6 +83,8 @@
     ```
 
 - `SpaceAroundBraces` - 波括弧（brace）の前後には空白を入れる
+    
+    - Hashリテラルの場合は`SpaceIndsideHashLiteralBraces`で空白指定ができる
 
     ```ruby
     source_code_layout/bad/surrounding_space.rb:3:16: C: Surrounding space missing for '{'.
@@ -89,7 +92,7 @@
                    ^
     ```
 
-- `SpaceInsideParens` - 丸括弧（paren）の後には空白を入れない
+- `SpaceInsideParens` - 丸括弧（paren）の間には空白を入れない
 
     ```ruby
     source_code_layout/bad/surrounding_space.rb:7:3: C: Space inside parentheses detected.
@@ -97,7 +100,7 @@
       ^
     ```
 
-- `SpaceInsideBrackets` - 角括弧（bracket）の後には空白を入れない
+- `SpaceInsideBrackets` - 角括弧（bracket）の間には空白を入れない
 
     ```ruby
     source_code_layout/bad/surrounding_space.rb:5:2: C: Space inside square brackets detected.
@@ -145,6 +148,12 @@
              ^^^^^^^
     ```
 
+    - このようにする
+
+    ```ruby
+    hash = { one: 1 }
+    ```
+
 - `EndOfLine` - 改行コードは`LF`を利用、`CRLF`を利用しない
 
     ```ruby
@@ -177,7 +186,7 @@
              ^
     ```
 
-- `IfWithSelmicolon` - `if x;`の場合は三項演算子を利用する // TODO
+- `IfWithSelmicolon` - `if x;`は利用しない、三項演算子を利用する
 
     ```ruby
     source_code_layout/bad/if_with_semicolon.rb:1:1: C: Never use if x; Use the ternary operator instead.
@@ -192,7 +201,7 @@
         ^^^
     ```
 
-- `OneLineConditional` - `if`/`then`/`else`/`end`の場合、三項演算子を利用する // TODO
+- `OneLineConditional` - `if`/`then`/`else`/`end`の場合、三項演算子を利用する
 
     ```ruby
     source_code_layout/bad/one_line_conditional.rb:1:10: C: Favor the ternary operator (?:) over if/then/else/end constructs.
@@ -200,7 +209,7 @@
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `Blocks` - 1行ブロックでは`{...}`を利用する
+- `Blocks` - 1行ブロックでは`{...}`を利用する（好む）
 
     ```ruby
     source_code_layout/bad/blocks.rb:3:12: C: Prefer {...} over do...end for single-line blocks.
@@ -218,7 +227,8 @@
 
 - `ParameterLists` - メソッドに6個以上引数を設定しない（避ける）
 
-    - 最大数は設定可能
+    - 最大数は指定可能
+    - キーワード引数を含めるか指定可能
 
     ```ruby
     ource_code_layout/bad/parameter_lists.rb:1:10: C: Avoid parameter lists longer than 5 parameters.
@@ -226,7 +236,7 @@
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ```
 
-- `StringLeterals` - 特別な理由がない限り、`string`（リテラル）はシングルクォートを利用する
+- `StringLeterals` - 特別な理由がない限り、`string`（リテラル）はシングルクォートを利用する（好む）
 
     ```ruby
     source_code_layout/bad/string_literals.rb:1:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
@@ -234,7 +244,7 @@
           ^^^^^
     ```
 
-- `MultilineTernaryOperator` - 三項演算子を複数行にしない（避ける）
+- `MultilineTernaryOperator` - 複数行の三項演算子を複数行にしない（避ける）
 
     ```ruby
     source_code_layout/bad/ternary_operator.rb:3:1: C: Avoid multi-line ?: (the ternary operator); use if/unless instead.
@@ -243,7 +253,7 @@
     ```
 
 
-- `NestedTernaryOperator` - 三項演算子をネストしない
+- `NestedTernaryOperator` - 三項演算子をネストしない（好む）
 
     ```ruby
     source_code_layout/bad/ternary_operator.rb:1:19: C: Ternary operators must not be nested. Prefer if/else constructs instead.
@@ -361,7 +371,7 @@
           ^^^^^^^^^^
     ```
 
-- `AvoidFor` - `for`ではなく`each`を利用する（避ける）
+- `AvoidFor` - `for`ではなく`each`を利用する（好む）
 
     ```ruby
     source_code_layout/bad/avoid_for.rb:1:1: C: Prefer *each* over *for*.
@@ -369,7 +379,7 @@
         ^^^
     ```
 
-- `AvoidPerlisms` - Perlスタイルのグローバル変数を利用しない（避ける）
+- `AvoidPerlisms` - Perlスタイルのグローバル変数を利用しない（好む）
 
     ```ruby
     source_code_layout/bad/avoid_perlisms.rb:1:6: C: Prefer $PROGRAM_NAME over $0.
@@ -567,6 +577,8 @@
 
 - `BlockNesting` - `if`、`case`などのネストは3回以上しない（避ける）
 
+    - ネスト回数は指定可能
+
     ```ruby
     source_code_layout/bad/block_nesting.rb:5:9: C: Avoid more than 3 levels of block nesting.
             if ddd > 3
@@ -631,6 +643,8 @@
 
 - `DotPosition` - メソッドチェーン時に改行する時は`.`を呼び出すメソッドと一緒に記述する
 
+    - `.`の場所は指定可能
+
     ```ruby
     source_code_layout/bad/dot_position.rb:7:4: C: Place the . on the next line, together with the method name.
     aaa.
@@ -687,7 +701,7 @@
         ^^^^^^^^
     ```
 
-- `ClassMethods` - クラスメソッドは`self`を利用する
+- `ClassMethods` - クラスメソッドは`self`を利用する（好む）
 
     ```ruby
     source_code_layout/bad/class_method.rb:2:7: C: Prefer self over class/module for class/module methods.
@@ -695,7 +709,9 @@
         ^^^^
     ```
 
-- `CollectionMethos` - `map`/`reduce`/`find`/`select`を利用する
+- `CollectionMethos` - `map`/`reduce`/`find`/`select`を利用する（好む）
+
+    - PreferrredMethodsを指定しないとだめ
 
     ```ruby
     source_code_layout/bad/collection_methods.rb:2:3: C: Prefer map over collect.
@@ -720,7 +736,7 @@
     ^^^^^
     ```
 
-- `RegexpLiteral` - // TODO
+- `RegexpLiteral` - `%r`を利用する時はバックスラッシュ`/`が1個以上ある場合だけ利用する
 
     ```ruby
     source_code_layout/bad/regexp_literal.rb:1:1: C: Use %r only for regular expressions matching more than 1 '/' character.
@@ -728,14 +744,13 @@
     ^^^^^^^
     ```
 
-- `AvoidPerlBackrefs` - // TODO
+- `AvoidPerlBackrefs` - 正規表現でperlスタイルな`$1`などは利用しない
 
     ```ruby
     source_code_layout/bad/avoid_perl_backrefs.rb:3:6: C: Prefer the use of MatchData over $1.
     puts $1
          ^^
     ```
-
 
 ## Lint
 
@@ -747,11 +762,14 @@
         ^^^^^^^^^^^^^
     ```
 
-- `HandleExceptions` - // TODO lint
+- `HandleExceptions` - `resuce`で何もしないのはだめ
 
     ```ruby
-    aaa
+    source_code_layout/bad/handle_exceptions.rb:3:1: W: Do not suppress exceptions.
+    rescue SomeError
+    ^^^^^^^^^^^^^^^^
     ```
+
 - `AssignmentInCondition` - `if`/`while`/`until`での条件句hkに`=`を利用しない
 
     ```ruby
@@ -852,4 +870,5 @@
 
 ## Rails
 
-- `Validation` - // TODO rails
+
+- `Validation` - `validates_acceptance_of`など古いvalidationメソッドを利用しない
