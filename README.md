@@ -1,7 +1,8 @@
 # rubocop_sample
 
-- [rubocop](https://github.com/bbatsov/rubocop)のサンプル
+- [rubocop-0.9.1](https://github.com/bbatsov/rubocop)のサンプル
 - [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide)に従ってコーディングチェックしてくれる
+
 
 ## Style
 
@@ -570,6 +571,8 @@
     ^^^^^^^^^^^
     ```
 - `AccessControl` - `public`、`private`の後は1行改行する、`public`、`private`はdefと同じ階層のインデントにする
+
+    - 試したバージョンではdefとpublicの階層をチェックしているわけではなく、classの宣言から-2された所にインデントされているかのチェックだった
 
     ```ruby
     source_code_layout/bad/access_control.rb:3:3: C: Keep a blank line before and after public.
