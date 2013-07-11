@@ -406,7 +406,11 @@
 
 - `FavorJoin` - `Array#*`を利用しない、`Array#join`を利用する
 
-    - 動作確認できなかった
+    ```ruby
+    source_code_layout/bad/favor_join.rb:1:11: C: Favor Array#join over Array#*.
+    [1, 2, 3] * ','
+              ^
+    ```
 
 - `Alias` - `alias`を利用しない、`alias_method`を利用する
 
