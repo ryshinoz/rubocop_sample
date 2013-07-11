@@ -1,5 +1,6 @@
-# [rubocop](https://github.com/bbatsov/rubocop)
+# rubocop_sample
 
+- [rubocop](https://github.com/bbatsov/rubocop)のサンプル
 - [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide)に従ってコーディングチェックしてくれる
 
 ## Style
@@ -617,7 +618,7 @@
                 ^^
     ```
 
-- `CharacterLiteral` - 数値リテラル`?`を利用しない
+- `CharacterLiteral` - 文字リテラル`?`を利用しない
 
     ```ruby
     source_code_layout/bad/character_literal.rb:1:8: C: Do not use the character literal - use string literal instead.
@@ -736,7 +737,7 @@
     ^^^^^
     ```
 
-- `RegexpLiteral` - `%r`を利用する時はバックスラッシュ`/`が1個以上ある場合だけ利用する
+- `RegexpLiteral` - `%r`を利用する時はバックスラッシュ`/`が2個以上ある場合だけ利用する
 
     ```ruby
     source_code_layout/bad/regexp_literal.rb:1:1: C: Use %r only for regular expressions matching more than 1 '/' character.
