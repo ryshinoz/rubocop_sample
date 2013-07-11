@@ -857,7 +857,7 @@
 
 - `RescueException` - `resuce`で`Exception`をキャッチしない
 
-    - exitとか処理できない
+    - [rescue Exception を安易に使うべきではない理由](http://qiita.com/snaka/items/40c9fd3cc16c2ccc195d) ★
 
     ```ruby
     source_code_layout/bad/rescue_exception.rb:3:1: W: Avoid rescuing the Exception class.
