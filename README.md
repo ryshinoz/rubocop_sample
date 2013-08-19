@@ -677,7 +677,7 @@
           ^^^^^^^^^^^^
     ```
 
-- `RescueModifier` - `rescue`はキャッチする例外を指定して利用する
+- `RescueModifier` - `rescue`修飾子を利用しない
 
     ```ruby
     source_code_layout/bad/rescue_modifier.rb:1:1: C: Avoid using rescue in its modifier form.
